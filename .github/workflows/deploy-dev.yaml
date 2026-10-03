@@ -1,0 +1,36 @@
+name: Deploy DEV
+on:
+  workflow_dispatch:
+    inputs:
+      source-sha:
+        description: Full source SHA passed by the successful Build workflow
+        required: true
+        type: string
+      build-run-id:
+        description: Exact successful Build workflow run ID
+        required: true
+        type: string
+jobs:
+  deploy:
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-deploy.yaml@v1
+    permissions:
+      contents: read
+      actions: read
+    with:
+      environment: dev
+      config-file: deploy.yaml
+      source-sha: ${{ inputs.source-sha }}
+      build-run-id: ${{ inputs.build-run-id }}
+    secrets: inherit
+  dispatch-verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Dispatch DEV verification with this run ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_RUN_ID: ${{ github.run_id }}
+        run: gh workflow run verify-dev.yaml --ref main -f upstream-run-id="$UPSTREAM_RUN_ID"

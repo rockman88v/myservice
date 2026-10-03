@@ -1,0 +1,31 @@
+name: Verify DEV
+on:
+  workflow_dispatch:
+    inputs:
+      upstream-run-id:
+        description: Successful Deploy DEV workflow run ID
+        required: true
+        type: string
+jobs:
+  verify:
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@v1
+    permissions:
+      contents: read
+      actions: read
+    with:
+      environment: test
+      config-file: deploy.yaml
+      upstream-run-id: ${{ inputs.upstream-run-id }}
+    secrets: inherit
+  dispatch-promote-staging:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Dispatch STAGING promotion with this verified run ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_RUN_ID: ${{ github.run_id }}
+        run: gh workflow run promote-staging.yaml --ref main -f upstream-run-id="$UPSTREAM_RUN_ID"

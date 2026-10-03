@@ -1,0 +1,17 @@
+name: CI
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  ci:
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-ci.yaml@v1
+    with:
+      dotnet-version: 8.0.x
+      solution: ./PlayStudios.MyService/PlayStudios.MyService.sln
+      test-project: ./PlayStudios.MyService/PlayStudios.MyService.WebApi.Tests/PlayStudios.MyService.WebApi.Tests.csproj
+      configuration: Release
+      coverage-enabled: true
+      security-scan-enabled: true
+    secrets: inherit

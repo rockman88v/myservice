@@ -1,0 +1,39 @@
+application: payment-service
+
+image:
+  repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/myservice
+  tagPath: microservice.image.tag
+  digestPath: image.digest
+
+deployment:
+  gitops:
+    repository: rockman88v/microservice-gitops
+    chartPath: myservice-chart
+  environments:
+    dev:
+      valuesFile: myservice-chart/values.test.yaml
+      baseUrl: https://myservice-dev.example.invalid
+      argo:
+        server: argocd-server.argocd
+        application: myservice-test
+    staging:
+      valuesFile: myservice-chart/values.qa.yaml
+      baseUrl: https://myservice-staging.example.invalid
+      argo:
+        server: argocd-server.argocd
+        application: myservice-qa
+    production:
+      valuesFile: myservice-chart/values.prod.yaml
+      baseUrl: https://myservice.example.invalid
+      argo:
+        server: argocd-server.argocd
+        application: myservice-prod
+
+tests:
+  smoke:
+    enabled: true
+    path: ./PlayStudios.MyService/tests/smoke
+  e2e:
+    enabled: true
+    path: ./PlayStudios.MyService/tests/e2e
+    framework: shell
