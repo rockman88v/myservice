@@ -14,8 +14,8 @@ jobs:
       application: myservice
       dockerfile: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/Dockerfile
       docker-context: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/
-      image-repository: ${{ vars.ECR_IMAGE_REPOSITORY }}
-      aws-region: ${{ vars.AWS_REGION }}
+      image-repository: ${{ secrets.ECR_IMAGE_REPOSITORY }}
+      aws-region: ${{ secrets.AWS_REGION }}
       trivy-severity: CRITICAL,HIGH
       trivy-ignore-unfixed: true
       fail-on-vulnerability: true
