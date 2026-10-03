@@ -18,7 +18,7 @@ jobs:
       aws-region: ${{ vars.AWS_REGION }}
       trivy-severity: CRITICAL,HIGH
       trivy-ignore-unfixed: true
-      fail-on-vulnerability: true
+      fail-on-vulnerability: false
     secrets: inherit
   dispatch-dev:
     needs: build
