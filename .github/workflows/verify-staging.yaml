@@ -8,13 +8,13 @@ on:
         type: string
 jobs:
   verify:
-    uses: YOUR_ORG/platform-ci-cd/.github/workflows/reusable-verify.yaml@v1
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@v1.1
     permissions:
       contents: read
       actions: read
     with:
       environment: staging
-      config-file: deploy.yaml
+      config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
       upstream-run-id: ${{ inputs.upstream-run-id }}
     secrets: inherit
   dispatch-promote-production:
