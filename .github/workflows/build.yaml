@@ -32,4 +32,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ github.sha }}
           BUILD_RUN_ID: ${{ github.run_id }}
-        run: gh workflow run deploy-dev.yaml --ref main -f source-sha="$SOURCE_SHA" -f build-run-id="$BUILD_RUN_ID"
+        run: gh workflow run deploy-dev.yaml --repo "${{ github.repository }}" --ref main -f source-sha="$SOURCE_SHA" -f build-run-id="$BUILD_RUN_ID"
