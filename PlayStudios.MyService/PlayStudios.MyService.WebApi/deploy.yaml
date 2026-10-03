@@ -11,19 +11,19 @@ deployment:
     chartPath: myservice-chart
   environments:
     dev:
-      valuesFile: myservice-chart/values.test.yaml
+      valuesFile: values.test.yaml
       baseUrl: https://myservice-dev.example.invalid
       argo:
         server: argocd-server.argocd
         application: myservice-test
     staging:
-      valuesFile: myservice-chart/values.qa.yaml
+      valuesFile: values.qa.yaml
       baseUrl: https://myservice-staging.example.invalid
       argo:
         server: argocd-server.argocd
         application: myservice-qa
     production:
-      valuesFile: myservice-chart/values.prod.yaml
+      valuesFile: values.prod.yaml
       baseUrl: https://myservice.example.invalid
       argo:
         server: argocd-server.argocd
