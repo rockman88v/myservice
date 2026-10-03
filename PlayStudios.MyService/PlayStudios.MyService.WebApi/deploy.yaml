@@ -1,7 +1,7 @@
 application: payment-service
 
 image:
-  repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/myservice
+  repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/playstudio/myservice
   tagPath: microservice.image.tag
   digestPath: image.digest
 
