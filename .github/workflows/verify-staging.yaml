@@ -8,7 +8,7 @@ on:
         type: string
 jobs:
   verify:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@v1.1
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@v1.2
     permissions:
       contents: read
       actions: read
