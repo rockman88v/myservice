@@ -18,3 +18,16 @@ jobs:
       config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
       upstream-run-id: ${{ inputs.upstream-run-id }}
     secrets: inherit
+
+  dispatch-verify-production:
+    needs: promote
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Dispatch PRODUCTION verification with this run ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_RUN_ID: ${{ github.run_id }}
+        run: gh workflow run verify-production.yaml --repo "${{ github.repository }}" --ref main -f upstream-run-id="$UPSTREAM_RUN_ID"    

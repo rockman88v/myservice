@@ -1,0 +1,21 @@
+name: Verify PRODUCTION
+on:
+  workflow_dispatch:
+    inputs:
+      upstream-run-id:
+        description: Successful Promote PRODUCTION workflow run ID
+        required: true
+        type: string
+jobs:
+  verify:
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@main
+    permissions:
+      contents: read
+      actions: read
+    with:
+      runner: test-runner #production-runner
+      environment: production
+      config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
+      upstream-run-id: ${{ inputs.upstream-run-id }}
+    secrets: inherit
+  
