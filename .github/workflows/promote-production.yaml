@@ -7,6 +7,13 @@ on:
         required: true
         type: string
 jobs:
+  production-approval:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+
+    steps:
+      - name: Production deployment approval
   promote:
     uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@main
     environment:
