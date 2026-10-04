@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-
     steps:
       - name: Production deployment approval
+        run: echo "Production deployment approved."
   promote:
     uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@main
     permissions:
