@@ -9,7 +9,7 @@ jobs:
   ci:
     uses: rockman88v/platform-ci-cd/.github/workflows/reusable-ci.yaml@v1.4
     with:
-      dotnet-version: 3.1.0
+      dotnet-version: 3.1.100
       solution: ./PlayStudios.MyService/PlayStudios.MyService.sln
       test-project: ./PlayStudios.MyService/PlayStudios.MyService.WebApi.Tests/PlayStudios.MyService.WebApi.Tests.csproj
       configuration: Release
