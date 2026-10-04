@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   ci:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-ci.yaml@v1.4
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-ci.yaml@main
     with:
       dotnet-version: 3.1.100
       solution: ./PlayStudios.MyService/PlayStudios.MyService.sln
