@@ -10,9 +10,9 @@ deployment:
     repository: rockman88v/microservice-gitops
     chartPath: myservice-chart
   environments:
-    dev:
+    test:
       valuesFile: values.test.yaml
-      baseUrl: https://myservice-dev.example.invalid
+      baseUrl: https://myservice-test.example.invalid
       argo:
         server: argocd-server.argocd
         application: myservice-test
