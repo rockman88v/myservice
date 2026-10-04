@@ -1,4 +1,4 @@
-application: payment-service
+application: myservice
 
 image:
   repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/playstudio/myservice
