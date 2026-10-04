@@ -6,7 +6,7 @@ permissions:
   contents: read
 jobs:
   build:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-build.yaml@v1.1
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-build.yaml@v1.3
     permissions:
       contents: read
       id-token: write
