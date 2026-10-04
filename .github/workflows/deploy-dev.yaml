@@ -12,7 +12,7 @@ on:
         type: string
 jobs:
   deploy:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-deploy.yaml@v1.6
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-deploy.yaml@v1.7
     permissions:
       contents: read
       actions: read
