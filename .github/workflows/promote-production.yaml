@@ -8,7 +8,7 @@ on:
         type: string
 jobs:
   promote:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@v1.7
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@v1.8
     permissions:
       contents: read
       actions: read
