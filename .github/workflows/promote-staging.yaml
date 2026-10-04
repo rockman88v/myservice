@@ -13,7 +13,7 @@ jobs:
       contents: read
       actions: read
     with:
-      source-environment: dev
+      source-environment: test
       environment: staging
       config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
       upstream-run-id: ${{ inputs.upstream-run-id }}

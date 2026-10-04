@@ -17,7 +17,7 @@ jobs:
       contents: read
       actions: read
     with:
-      environment: dev
+      environment: test
       config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
       source-sha: ${{ inputs.source-sha }}
       build-run-id: ${{ inputs.build-run-id }}
