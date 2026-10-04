@@ -16,8 +16,6 @@ jobs:
       - name: Production deployment approval
   promote:
     uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@main
-    environment:
-      name: production
     permissions:
       contents: read
       actions: read
