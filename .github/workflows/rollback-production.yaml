@@ -152,6 +152,16 @@ jobs:
               "$CONTEXT_FILE"
           )"
 
+          source_sha="$(
+            jq -er '.sourceSha | strings | select(test("^[a-fA-F0-9]{40}$"))' \
+              "$CONTEXT_FILE"
+          )"
+
+          build_run_id="$(
+            jq -er '.buildRunId | strings | select(test("^[0-9]+$"))' \
+              "$CONTEXT_FILE"
+          )"
+
           [[ "$promotion_run_id" == "$EXPECTED_PROMOTION_RUN_ID" ]] || {
             echo "release-context does not belong to the specified promotion run." >&2
             echo "Expected: $EXPECTED_PROMOTION_RUN_ID" >&2
@@ -222,6 +232,9 @@ jobs:
             echo "promoted-repository=$promoted_repository"
             echo "promoted-tag=$promoted_tag"
             echo "promoted-digest=$promoted_digest"
+
+            echo "source-sha=$source_sha"
+            echo "build-run-id=$build_run_id"
           } >> "$GITHUB_OUTPUT"
 
       # ============================================================
@@ -379,10 +392,15 @@ jobs:
           PROMOTED_REPOSITORY: ${{ steps.context.outputs.promoted-repository }}
           PROMOTED_TAG: ${{ steps.context.outputs.promoted-tag }}
           PROMOTED_DIGEST: ${{ steps.context.outputs.promoted-digest }}
+
+          SOURCE_SHA: ${{ steps.context.outputs.source-sha }}
+          BUILD_RUN_ID: ${{ steps.context.outputs.build-run-id }}
         run: |
           set -euo pipefail
 
           jq -n \
+            --arg sourceSha "$SOURCE_SHA" \
+            --arg buildRunId "$BUILD_RUN_ID" \
             --arg promotionRunId "$PROMOTION_RUN_ID" \
             --arg rollbackRunId "$ROLLBACK_RUN_ID" \
             --arg environment "$ENVIRONMENT" \
@@ -396,6 +414,8 @@ jobs:
             --arg promotedTag "$PROMOTED_TAG" \
             --arg promotedDigest "$PROMOTED_DIGEST" \
             '{
+              sourceSha: $sourceSha,
+              buildRunId: $buildRunId,
               promotionRunId: $promotionRunId,
               rollbackRunId: $rollbackRunId,
               environment: $environment,
