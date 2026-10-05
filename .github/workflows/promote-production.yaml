@@ -37,4 +37,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           UPSTREAM_RUN_ID: ${{ github.run_id }}
-        run: gh workflow run verify-production.yaml --repo "${{ github.repository }}" --ref main -f upstream-run-id="$UPSTREAM_RUN_ID"    
+        run: gh workflow run verify-production.yaml --repo "${{ github.repository }}" --ref main -f upstream-run-id="$UPSTREAM_RUN_ID" -f lifecycle-type="rollback"
