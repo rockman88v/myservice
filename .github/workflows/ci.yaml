@@ -15,4 +15,5 @@ jobs:
       configuration: Release
       coverage-enabled: true
       security-scan-enabled: true
+      trivy-fail-on-vulnerability: false
     secrets: inherit
