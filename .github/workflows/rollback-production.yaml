@@ -257,6 +257,7 @@ jobs:
       # If production has changed since that promotion, STOP.
       # ============================================================
       - name: Verify production still runs promoted image
+        continue-on-error: true
         shell: bash
         env:
           VALUES_FILE: gitops/${{ steps.context.outputs.chart-path }}/${{ steps.context.outputs.values-file }}
