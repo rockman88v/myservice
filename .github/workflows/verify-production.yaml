@@ -6,6 +6,10 @@ on:
         description: Successful Promote PRODUCTION workflow run ID
         required: true
         type: string
+      lifecycle-type:
+        description: "Lifecycle operation that triggered verification"
+        required: false
+        type: string
 jobs:
   verify:
     uses: rockman88v/platform-ci-cd/.github/workflows/reusable-verify.yaml@main
@@ -17,5 +21,6 @@ jobs:
       environment: production
       config-file: ./PlayStudios.MyService/PlayStudios.MyService.WebApi/deploy.yaml
       upstream-run-id: ${{ inputs.upstream-run-id }}
+      lifecycle-type: ${{ inputs.lifecycle-type }}
     secrets: inherit
   
