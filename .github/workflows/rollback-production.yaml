@@ -414,15 +414,15 @@ jobs:
                 tag: $promotedTag,
                 digest: $promotedDigest
               }
-            }' > rollback-context.json
+            }' > release-context.json
 
-          cat rollback-context.json
+          cat release-context.json
 
       - name: Upload rollback context
         uses: actions/upload-artifact@v4
         with:
-          name: rollback-context
-          path: rollback-context.json
+          name: release-context
+          path: release-context.json
           if-no-files-found: error
           retention-days: 90
 
