@@ -15,7 +15,7 @@ jobs:
       - name: Production deployment approval
         run: echo "Production deployment approved."
   promote:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@main
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-promote.yaml@v1.0.0-pipeline
     permissions:
       contents: read
       actions: read

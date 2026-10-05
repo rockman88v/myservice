@@ -10,7 +10,7 @@ on:
 
 jobs:
   rollback:
-    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-rollback.yaml@main
+    uses: rockman88v/platform-ci-cd/.github/workflows/reusable-rollback.yaml@v1.0.0-pipeline
     permissions:
       contents: read
       actions: write
